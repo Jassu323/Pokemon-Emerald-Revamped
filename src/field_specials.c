@@ -152,6 +152,30 @@ void Special_ViewWallClock(void)
     LockPlayerFieldControls();
 }
 
+// Define Morning, Day, Evening, and Night
+void GetDayOrNight(void)
+{
+    u8 nightOrDay;
+    RtcCalcLocalTime();
+    if (gLocalTime.hours >= 8 && gLocalTime.hours <= 19)
+    {
+        nightOrDay = 0; // Day
+    }
+    else // if (gLocalTime.hours >= 10 && gLocalTime.hours <= 16)
+    {
+        nightOrDay = 1; // Night
+    }
+/*     else if (gLocalTime.hours >= 17 && gLocalTime.hours <= 21)
+    {
+        nightOrDay = 2; // Evening
+    }
+    else
+    {
+        nightOrDay = 3; // Night time
+    } */
+    gSpecialVar_Result = nightOrDay;
+}
+
 void ResetCyclingRoadChallengeData(void)
 {
     gBikeCyclingChallenge = FALSE;
